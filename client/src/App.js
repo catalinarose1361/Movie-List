@@ -1,5 +1,5 @@
 import {useState, useEffect} from 'react'
-import logo from './logo.svg';
+
 import './App.css';
 
 function App() {
@@ -23,7 +23,19 @@ function App() {
 
   return (
     <div className="App">
-   
+
+      {movies.map(movie => {
+        return (
+          <div>
+            <h1>{movie.title}</h1>
+            <p>{movie.genre}</p>
+            <p>{movie.year}</p>
+            <button>DELETE</button>
+          </div>
+        
+        )
+      })}
+
     </div>
   );
 }
