@@ -47,7 +47,7 @@ function App() {
 
   function addMovie(e) {
     e.preventDefault();
-    console.log("movie added")
+    alert("movie added")
     //gets values from state
     const newMovie = {
       title: movie.title,
@@ -67,7 +67,7 @@ function App() {
         <input onChange={handleChange} name="title" value={movie.title}></input>
         <input onChange={handleChange} name="genre" value={movie.genre}></input>
         <input onChange={handleChange} name="year" value={movie.year}></input>
-        <button onCLick={addMovie}>ADD MOVIE</button>
+        <button onClick={addMovie}>ADD MOVIE</button>
       </form>
       {movies.map(movie => {
         return (

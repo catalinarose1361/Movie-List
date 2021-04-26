@@ -30,6 +30,21 @@ app.get('/movies', function(req, res) {
     //find the movies then extract data as json
     Movie.find().then(movies => res.json(movies));
 })
+//add movie
+app.post('/newMovie', function(req, res) {
+    //deconstructing the object sent fron the front end
+    const title = req.body.title;
+    const genre = req.body.genre;
+    const year = req.body.year;
+    //creating new movie in DB using our model Movie
+    const newMovie = new Movie({
+        title,
+        genre,
+        year
+    })
+    //saving our new movie
+    newMovie.save()
+})
 
 app.listen(port, function() {
     console.log("express is running");
