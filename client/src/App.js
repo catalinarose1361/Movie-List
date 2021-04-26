@@ -57,6 +57,12 @@ function App() {
     //posts our newMovie variable to proxy
     axios.post('/newMovie', newMovie)
   }
+  //this function gets called in the onClick for delete
+  function deleteMovie(id){
+    axios.delete('/delete/' + id)
+    alert("movie deleted")
+  }
+
 // input names are required to parse from body req in our server
 //value is set to whatever value was saved in state for movie
   return (
@@ -75,7 +81,7 @@ function App() {
             <h1>{movie.title}</h1>
             <p>{movie.genre}</p>
             <p>{movie.year}</p>
-            <button>DELETE</button>
+            <button onClick={() => deleteMovie(movie._id)}>DELETE</button>
           </div>
         
         )

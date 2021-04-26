@@ -44,6 +44,19 @@ app.post('/newMovie', function(req, res) {
     })
     //saving our new movie
     newMovie.save()
+});
+
+//delete movie
+
+app.delete('/delete/:id', function(req, res) {
+    //reconstruct id
+    const id = req.params.id;
+    //when the model id matches this id, delete
+    Movie.findByIdAndDelete({_id: id}, function(err) {
+        if(!err) {
+            console.log("movie deleted");
+        } else console.log(err);
+    })
 })
 
 app.listen(port, function() {
