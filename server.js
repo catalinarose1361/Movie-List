@@ -8,11 +8,11 @@ const mongoose = require("mongoose")
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); 
 // app.use(bodyParser.json()); --old will give you a depreciation warning
-
+require('dotenv').config()
 app.use(cors());
 
 //mongoose connection string from mongoDB atlas
-mongoose.connect(MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI)
 
 // data schema 
 const movieSchema = {
