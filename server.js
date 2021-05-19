@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors());
 
 //mongoose connection string from mongoDB atlas
-mongoose.connect("mongodb+srv://catalina-admin:fliaJUchyWudg52g@cluster0.xttdr.mongodb.net/moviesDB?retryWrites=true&w=majority")
+mongoose.connect(MONGODB_URI)
 
 // data schema 
 const movieSchema = {
