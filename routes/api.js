@@ -7,7 +7,7 @@ const Movie = require("../models")
 router.get('/movies', function(req, res) {
 
     //SEND A RESPONSE TO THE FRONT END IN JSON FORMAT
-    Movie.find().then(movie => res.json(movies));
+    Movie.find().then(movies => res.json(movies));
 });
 
 // ADD MOVIE
