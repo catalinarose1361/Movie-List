@@ -1,72 +1,35 @@
 const express = require("express");
 const app = express();
-// const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
+const routes = require("./routes/api.js")
 const port = process.env.PORT || 5000;
-const mongoose = require("mongoose")
+
+require('dotenv').config()
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json()); 
-// app.use(bodyParser.json()); --old will give you a depreciation warning
-require('dotenv').config()
+
 app.use(cors());
 
-//mongoose connection string from mongoDB atlas
+//MONGODB ATLAS CONNECTION STRING
 mongoose.connect(process.env.MONGODB_URI)
 
-// data schema 
-const movieSchema = {
-    title: String,
-    genre: String,
-    year: String
-}
-// Mongoose Model
-const Movie = mongoose.model("Movie", movieSchema);
+//API ROUTE CONNECTION
+app.use(routes);
 
-//API routes
-app.get('/movies', function(req, res) {
-    //test to see if server is running
-    // res.send("express is here")
-    //find the movies then extract data as json
-    Movie.find().then(movies => res.json(movies));
-})
-//add movie
-app.post('/newMovie', function(req, res) {
-    //deconstructing the object sent fron the front end
-    const title = req.body.title;
-    const genre = req.body.genre;
-    const year = req.body.year;
-    //creating new movie in DB using our model Movie
-    const newMovie = new Movie({
-        title,
-        genre,
-        year
-    })
-    //saving our new movie
-    newMovie.save()
-});
-
-//delete movie
-
-app.delete('/delete/:id', function(req, res) {
-    //reconstruct id
-    const id = req.params.id;
-    //when the model id matches this id, delete
-    Movie.findByIdAndDelete({_id: id}, function(err) {
-        if(!err) {
-            console.log("movie deleted");
-        } else console.log(err);
-    })
-})
-
-//when in production connect the back end to the static build files
+//WHEN IN PRODUCTION, CONNECT THE BACK END WITH THE STATIC BUILD FILES
 if(process.env.NODE_ENV === 'production') {
+
     app.use(express.static('client/build'));
+
     app.get("*", (req, res) => {
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
     })
 }
 
 app.listen(port, function() {
+
     console.log("express is running");
 })
