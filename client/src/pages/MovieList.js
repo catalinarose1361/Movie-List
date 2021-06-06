@@ -1,8 +1,8 @@
 import { React, useState, useEffect } from "react";
-// import ViewAll from "../components/ViewAll";
-// import AddMovieForm from "../components/AddMovieForm"
+import ViewAll from "../components/ViewAll";
+import AddMovieForm from "../components/AddMovieForm"
 import axios from "axios"
-import { Grommet, Button } from "grommet";
+import { Grommet, Button, Grid, Box, Header, Form, FormField, List, TextInput } from "grommet";
 
 const MovieList = () => {
 
@@ -97,35 +97,61 @@ const MovieList = () => {
 
     };
 
-    // input names are required to parse from body req in our server
-    //value is set to whatever value was saved in state for movie
+
 
     return (
-     
-        <div className="App">
-      <h1>Add Movie</h1>
-      <form>
-        
-        <input onChange={handleChange} name="title" value={movie.title}></input>
-        <input onChange={handleChange} name="genre" value={movie.genre}></input>
-        <input onChange={handleChange} name="year" value={movie.year}></input>
-       <button onClick={addMovie}>ADD MOVIE</button>
-      </form>
+        <Grommet>
+              <Grid
+  rows={['medium', 'large']}
+  columns={['medium', 'large']}
+  gap="small"
+  areas={[
+    { name: 'header', start: [0, 0], end: [1, 0] },
+    { name: 'addMovie', start: [0, 1], end: [0, 1] },
+    { name: 'list', start: [1, 1], end: [1, 1] },
+  ]}
+>
+
+
+      <Header gridArea="header">Add Movie</Header>
       {movies.map(movie => {
-        return (
-          <div>
-            <h1>{movie.title}</h1>
-            <p>{movie.genre}</p>
-            <p>{movie.year}</p>
-            <button onClick={() => deleteMovie(movie._id)}>DELETE</button>
-          </div>
+			return (
+        <ViewAll 
+        gridArea="list"
+        title={movie.title}
+        genre={movie.genre}
+        year={movie.year}
+        id={movie._id}
+        deleteMovie={deleteMovie}
         
-        )
+        />
+
+   
+      )
       })}
+        <AddMovieForm 
+      gridArea="addMovie" 
+      movie={movie} 
+      handleChange={handleChange}
+      addMovie={addMovie}
+      
+      />
+   
+      
+      
+        
+   
+  
 
-    </div>
+    
 
-    )
+    
+
+</Grid>
+        </Grommet>
+      
+     
+    ) 
 }
 
 export default MovieList
