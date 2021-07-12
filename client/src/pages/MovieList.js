@@ -2,7 +2,7 @@ import { React, useState, useEffect } from "react";
 import ViewAll from "../components/ViewAll";
 import AddMovieForm from "../components/AddMovieForm"
 import axios from "axios"
-import { Grommet, Button, Grid, Box, Header, Form, FormField, List, TextInput } from "grommet";
+import { Grommet, Grid, Header  } from "grommet";
 
 const MovieList = () => {
 
@@ -101,16 +101,16 @@ const MovieList = () => {
 
     return (
         <Grommet>
-              <Grid
-  rows={['medium', 'large']}
-  columns={['medium', 'large']}
-  gap="small"
-  areas={[
-    { name: 'header', start: [0, 0], end: [1, 0] },
-    { name: 'addMovie', start: [0, 1], end: [0, 1] },
-    { name: 'list', start: [1, 1], end: [1, 1] },
-  ]}
->
+          <Grid
+          rows={['medium', 'large']}
+          columns={['medium', 'large']}
+          gap="small"
+          areas={[
+            { name: 'header', start: [0, 0], end: [1, 0] },
+            { name: 'addMovie', start: [0, 1], end: [0, 1] },
+            { name: 'list', start: [1, 1], end: [1, 1] },
+          ]}
+          >
 
 
       <Header gridArea="header">Add Movie</Header>
@@ -137,18 +137,9 @@ const MovieList = () => {
       
       />
    
-      
-      
-        
-   
-  
-
     
-
-    
-
-</Grid>
-        </Grommet>
+      </Grid>
+    </Grommet>
       
      
     ) 

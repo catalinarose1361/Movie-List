@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Grommet, Box, CardHeader, CardBody, CardFooter,TextInput, Button, TextArea } from "grommet"
 // input names are required to parse from body req in our server
     //value is set to whatever value was saved in state for movie
